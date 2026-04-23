@@ -1,0 +1,190 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #f7ecff 0%, #c7d8ff 45%, #3e5bcc 100%);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #fff;
+}
+
+.page {
+  width: min(92vw, 900px);
+  text-align: center;
+  position: relative;
+  padding: 2rem;
+}
+
+.hero-card {
+  position: relative;
+  border-radius: 40px;
+  overflow: hidden;
+  padding: 3rem 2rem 2rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 30px 70px rgba(5, 19, 80, 0.35);
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255, 187, 232, 0.6), transparent 35%),
+              radial-gradient(circle at bottom right, rgba(184, 255, 252, 0.55), transparent 20%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.pet-circle {
+  margin: 0 auto 1.75rem;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255,170,255,0.2), rgba(110,165,255,0.35));
+  border: 2px solid rgba(255,255,255,0.35);
+  box-shadow: 0 20px 40px rgba(18, 43, 97, 0.25);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pet-circle::before {
+  content: '';
+  position: absolute;
+  inset: -18%;
+  background: radial-gradient(circle, rgba(255,255,255,0.45), transparent 45%);
+  filter: blur(14px);
+}
+
+.heart-icon {
+  font-size: 4rem;
+  color: #ff8ad7;
+  animation: beat 1.4s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+.paw-icon {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  font-size: 2.5rem;
+  color: #fff;
+  opacity: 0.88;
+  animation: floatPaw 6s ease-in-out infinite;
+}
+
+.content h1 {
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  margin-bottom: 1rem;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.22);
+}
+
+.content p {
+  font-size: 1.15rem;
+  line-height: 1.85;
+  max-width: 640px;
+  margin: 0 auto 1.5rem;
+  color: rgba(255,255,255,0.95);
+}
+
+.cursor-heart,
+.mini-heart,
+.animal-particle {
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: 999;
+}
+
+.cursor-heart,
+.mini-heart {
+  width: 18px;
+  height: 18px;
+  border-radius: 50% 50% 50% 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,138,215,0.95), rgba(255,255,255,0.05));
+  box-shadow: 0 0 18px rgba(255,138,215,0.35);
+}
+
+.cursor-heart::before,
+.mini-heart::before {
+  content: '❤';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(255,255,255,0.95);
+  font-size: 0.9rem;
+}
+
+.animal-particle {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  text-shadow: 0 5px 12px rgba(0,0,0,0.24);
+}
+
+.floating-hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floating-hearts::before,
+.floating-hearts::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50% 50% 50% 50%;
+  background: linear-gradient(135deg, #ff8ad7, #ff5a9e);
+  box-shadow: 0 0 28px rgba(255,138,215,0.35);
+  opacity: 0.8;
+  animation: floatHeart 7s infinite ease-in-out;
+}
+
+.floating-hearts::after {
+  left: 18%;
+  top: 68%;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #78dfff, #b7a8ff);
+  animation-duration: 12s;
+}
+
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(1.15); }
+}
+
+@keyframes floatPaw {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(-4deg); }
+}
+
+@keyframes floatHeart {
+  0% { transform: translateY(0) scale(0.95); opacity: 0.75; }
+  50% { transform: translateY(-28px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(0) scale(0.95); opacity: 0.75; }
+}
+
+@media (max-width: 520px) {
+  .hero-card {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .pet-circle {
+    width: 200px;
+    height: 200px;
+  }
+}
